@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td{
+        border: 1px black solid;
+        }
+    </style>
+</head>
+<body>
+ <h1>Receive Page</h1>
+{% if receiveForm  %}
+ <h1>Show Data</h1>
+ 
+ <table>
+     <tr>
+         <th>Subject</th>
+         <th>From</th>
+         <th>To</th>
+         <th>Receive date</th>
+         <th>Received by</th>
+         <th>File no</th>
+         <th>Remarks</th>
+     </tr>
+ 
+    {% for receiveForm  in receiveForm  %}
+    <tr>
+     <td>{{receiveForm.Subject}}</td>
+     <td>{{receiveForm.From}}</td>
+     <td>{{receiveForm.To}}</td>
+     <td>{{receiveForm.Receive_date}}</td>
+     <td>{{receiveForm.Received_by}}</td>
+     <td>{{receiveForm.File_no}}</td>
+     <td>{{receiveForm.Remarks}}</td>
+     {% comment %} these receiveForm are the id tag of the form in the html and the 
+     .Subject and all are the name of the models in the class receiveform in model.py {% endcomment %}
+ </tr>
+{%endfor%}
+</table>
+{% else %}
+ <h1>No Data</h1>
+{% endif %}
+</body>
+</html>

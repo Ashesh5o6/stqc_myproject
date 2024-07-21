@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %} Dashboard{% endblock title %} 
+
+{% block body %}
+<script src="https://cdn.logwork.com/widget/digital.js"></script>
+<div class="time_date">
+    <a href="https://logwork.com/current-time-in-agartala-india-tripura" class="digital-clock" data-style="flip" data-size="299" data-timezone="Asia/Kolkata" data-language="en">Agartala,  India</a>
+    </div>
+<div>
+    <p>There are {{ entry_count }} Dispatchs.</p>
+    <p>There are {{ entry_count2 }} Receives.</p>
+    <p>There are {{ user_count }} Registered users.</p>
+</div>
+{% endblock body %}

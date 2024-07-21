@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Form</title>
+</head>
+<body>
+    <h1>Input Form</h1>
+    <form method="POST" action="{% url 'dropdown' %}">  {% csrf_token %}  <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category" required>
+            <option value="">--- Select Category ---</option>
+            <option value="POST">POST</option>
+            <option value="SPEED POST">SPEED POST</option>
+            <option value="EMAIL">EMAIL</option>
+        </select><br><br>
+        <label for="user">User:</label>
+<input type="text" id="user" name="user" value="{{ request.user.username }}" disabled>  <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

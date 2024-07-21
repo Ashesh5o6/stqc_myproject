@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<html>
+<head>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+</head>
+<script>
+    function deleteRecord(recordId) {
+        fetch(`/delete/${recordId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById(`record-${recordId}`).remove();
+            }
+        });
+    }
+    </script>
+<body>
+    <h1>Dispatch Page</h1>
+{% if dispatchForm %}
+ <h1>Show Data</h1>
+<table id="disprec">
+    
+<thead>
+    <tr>
+        <th>Subject</th>
+        <th>To</th>
+        <th>Address</th>
+        <th>Dispatche By</th>
+        <th>Dispatch_date</th>
+        <th>Track_id</th>
+        <th>Sent By</th>
+        <th>File no</th> 
+        <th>Remarks</th> 
+        <th>Actions</th> 
+
+
+    </tr>
+    
+</thead>
+{% for dispatchForm in dispatchForm  %}
+    <tr>
+     <td>{{dispatchForm.subject}}</td>
+     <td>{{dispatchForm.to}}</td>
+     <td>{{dispatchForm.address}}</td>
+     <td>{{dispatchForm.dispatch_by}}</td>
+     <td>{{dispatchForm.date}}</td>
+     <td>{{dispatchForm.track_id}}</td>
+     <td>{{dispatchForm.sent_by}}</td>
+     <td>{{dispatchForm.file_no}}</td> 
+     <td>{{dispatchForm.remarks}}</td>
+     <td> 
+        <button><a href="{% url 'edit_record' dispatchForm.id %}">Edit</a></button>
+        <form method="POST" action="{% url 'delete_record' dispatchForm.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+        </form>          </td>
+     {% comment %} <td><a class="btn btn-sm btn-danger"edit_record href=""></a>Delete</td>  {% endcomment %}
+
+ 
+
+
+ </tr>
+{%endfor%}
+</table>
+{% else %}
+ <h1>No Data</h1>
+{% endif %}
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+
+$(document).ready(function(){
+$(function() {
+$("#disprec").dataTable();
+});
+
+});
+
+</script>
+
+</body>
+</html>
+{% endblock body %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td{
+        border: 1px black solid;
+        }
+    </style>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+  
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+</head>
+<body>
+ <h1>Registration Data</h1>
+{% if registration %}
+ <h1>Show Data</h1>
+ {% comment %} <h3>{{Receive Register}}</h3> {% endcomment %}
+ <table>
+     <tr>
+         <th>Name</th>
+         <th>Designation</th>
+         <th>Username</th>
+         <th>Password</th>
+
+
+     </tr>
+ <tr>
+    {% for registration in registration  %}
+     <td>{{registration.Names}}</td>
+     <td>{{registration.Designations}}</td>
+     <td>{{registration.Usernames}}</td>
+     <td>{{registration.Passwords}}</td>
+    
+</tr>
+{%endfor%}
+</table>
+{% else %}
+ <h1>No Data</h1>
+{% endif %}
+</body>
+</html>

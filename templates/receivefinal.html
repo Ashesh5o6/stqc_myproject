@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}RECEIVE{% endblock title %}
+{% block style %}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+.navbar a:hover {
+    background-color: #575757;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+.navbar-menu {
+    display: flex;
+}
+
+.container {
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#message {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+}
+{% endblock style %}
+{% block body %}
+<div class="container">
+    <h2>Receive Register</h2>
+    <form id="receiveForm" action="" method="POST">
+        {% csrf_token %} 
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+              </div>
+            <ul class="messages">
+            {% endif %}
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required />
+
+        <label for="From">From:</label>
+        <input type="text" id="From" name="from" required />
+
+        <label for="To">To:</label>
+        <input type="text" id="To" name="to" required />
+
+        <label for="Receive date">Receive date:</label>
+        <input type="date" id="Receive date" name="Receive date" required />
+
+        <label for="Received by">Received By:</label>
+        <input type="text" id="Received by" name="Received by" required />
+
+        <label for="file_no">File no:</label>
+        <input type="text" id="file_no" name="file_no" required />
+
+        <label for="Remarks">File Remarks:</label>
+        <input type="text" id="Remarks" name="Remarks" required />
+
+        <button type="submit">Submit</button>
+    </form>
+    <div id="message"></div>
+</div>
+
+<script>
+    document.getElementById('menu-icon').addEventListener('click', function () {
+        var menu = document.getElementById('navbar-menu');
+        menu.classList.toggle('active');
+    });
+</script>
+{% endblock body %}

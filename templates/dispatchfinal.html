@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}ETDC AGT{% endblock title %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 3%;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #333;
+        padding: 1rem;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar a:hover {
+        background-color: #575757;
+    }
+
+    .menu-icon {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    .navbar-menu {
+        display: flex;
+    }
+
+    .container {
+        background: #fff;
+        padding: 2rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        max-width: 400px;
+        margin: 2rem auto;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #28a745;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    #message {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-menu {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .navbar-menu.active {
+            display: flex;
+        }
+
+        .menu-icon {
+            display: block;
+        }
+    }
+
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class="container">
+    <h2>Dispatch Register Form</h2>
+    <form id="dispatchForm" action="" method="POST">
+         {% csrf_token %} 
+        <!-- {{form}} -->
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="category">Choose a category:</label>
+        <select name="dispatch_by" id="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="track_id">Track ID:</label>
+        <input type="text" id="track_id" name="track_id" required>
+
+        <label for="sent_by">Sent by:</label>
+        <input type="text" id="sent_by" name="sent_by" required>
+
+        <label for="file_no">File No:</label>
+        <input type="text" id="file_no" name="file_no" required>
+
+        <label for="remarks">Remarks:</label>
+        <input type="text" id="remarks" name="remarks" required>
+
+        <button type="submit">Submit</button>
+    </form>
+    <!-- {% comment %} <div id="message"></div> {% endcomment %} -->
+</div>
+{% endblock body %}

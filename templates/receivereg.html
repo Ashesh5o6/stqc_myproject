@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receive Register</title>
+    <link rel="stylesheet" href="dispatchform.css" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 3%;
+      }
+
+      .container {
+        background: #fff;
+        padding: 20vh;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        width: 300px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      #message {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Receive Register</h2>
+      <form id="receiveForm" action="" method="POST">
+        {% csrf_token %}
+        <label for="subject">subject:</label>
+        <input type="text" id="subject" name="subject" required />
+
+        <label for="From">From:</label>
+        <input type="text" id="From" name="from" required />
+
+        <label for="To">To:</label>
+        <input type="To" id="To" name="to" required >
+
+        <label for="Receive date">Receive date:</label>
+        <input type="date" id="Receive date" name="Receive date" required />
+
+        
+        <label for="Received by">Received By</label>
+            <input type="text" id="Received by" name="Received by" required>
+
+            <label for="file_no">File no:</label>
+            <input
+              type="text"
+              id="file_no"
+              name="file_no"
+              required
+            />
+            <label for="Remarks">File Remarks:</label>
+        <input type="text" id="Remarks" name="Remarks" required />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="message"></div>
+    </div>
+    <script src="dispatchform.js"></script>
+  </body>
+</html>

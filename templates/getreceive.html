@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block body %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dispatch Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+</head>
+
+    <h1>Dispatch Page</h1>
+{% if receiveForm %}
+ <h1>Show Data</h1>
+<table id="disprec">
+    
+<thead>
+    <tr>
+        <th>Subject</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Receive date</th>
+        <th>Received by</th>
+        <th>File no</th>
+        <th>Remarks</th>
+
+    </tr>
+    
+</thead>
+{% for receiveForm in receiveForm  %}
+    <tr>
+        <td>{{receiveForm.Subject}}</td>
+        <td>{{receiveForm.From}}</td>
+        <td>{{receiveForm.To}}</td>
+        <td>{{receiveForm.Receive_date}}</td>
+        <td>{{receiveForm.Received_by}}</td>
+        <td>{{receiveForm.File_no}}</td>
+        <td>{{receiveForm.Remarks}}</td>
+
+ </tr>
+{%endfor%}
+</table>
+{% else %}
+<h1>No Data</h1>
+{% endif %}
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#disprec').dataTable();
+    });
+</script>
+
+{% endblock body %}
+
+</html>
